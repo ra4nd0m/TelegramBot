@@ -1,0 +1,6 @@
+/.env
+/.vscode
+/node_modules
+/package-lock.json
+/test.json
+/test_payload.js
