@@ -22,7 +22,7 @@ const server = http.createServer(async (req, res) => {
         const data = JSON.parse(Buffer.concat(buffers).toString());
         //send data to chat
         for (const bit of data){
-            bot.telegram.sendMessage(chat_id, bit.title + "\n" + bit.content + "\n" + bit.link);
+            bot.telegram.sendMessage(chat_id, bit.title + "\n" + bit.content + "\n" + bit.link).catch(err=>console.error(err));
         }
         
     };
