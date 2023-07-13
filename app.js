@@ -6,7 +6,6 @@ require('dotenv').config();
 const bot = new Telegraf(process.env.TOKEN);
 var chat_id;
 bot.start((ctx) => { ctx.reply('Welcome ' + ctx.from.id); chat_id = ctx.from.id });
-bot.command('hello', (ctx) => ctx.reply('Hello'));
 bot.launch();
 
 
