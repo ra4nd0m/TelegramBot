@@ -20,11 +20,17 @@ const server = http.createServer(async (req, res) => {
             buffers.push(chunck);
         }
         const data = JSON.parse(Buffer.concat(buffers).toString());
+        data.forEach((bit) => {
+            const { title, content, link } = bit;
+            const boldTitle = `*${title}*`;
+            const messageText = `${boldTitle}\n${content}\n\n[Read More](${link})`;
+            bot.telegram.sendMessage(chat_id, messageText, { parse_mode: "Markdown" }).catch(err=>console.error(err));
+        });
         //send data to chat
-        for (const bit of data){
-            bot.telegram.sendMessage(chat_id, bit.title + "\n" + bit.content + "\n" + bit.link).catch(err=>console.error(err));
-        }
-        
+       /* for (const bit of data) {
+            bot.telegram.sendMessage(chat_id, bit.title + "\n" + bit.content + "\n" + bit.link).catch(err => console.error(err));
+        }*/
+
     };
     res.writeHead(200);
     res.end('Recived');
